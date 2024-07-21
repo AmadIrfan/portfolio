@@ -1,0 +1,12 @@
+name: portfolio deployment
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    runs_on: ubuntu-latest
+    steps:
+        - name: install dependencies
+          run: npm install
