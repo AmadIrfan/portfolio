@@ -1,16 +1,14 @@
 import React from 'react';
-import './App.css';
+import './assets/js/script';
+import Main from './components/Main Content/Main';
+import SideBar from './components/SideBar/Sidebar';
 
-function App() {
+function App(props) {
   return (
-    <div className="App">
-      <div className="text">
-        <h1>Welcome to my portfolio app</h1>
-        <h4>AmadIrfan</h4>
-        <p>😍❤😍</p>
-        <p>coming soon ..................</p>
-      </div>
-    </div>
+    <>
+      <SideBar />   
+      <Main />
+    </>
   );
 }
 
