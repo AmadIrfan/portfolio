@@ -5,19 +5,20 @@ import React from "react";
 import AboutMe from "./AboutMe";
 import Services from "./Services";
 import Clients from "./Clients";
-import TestimonialModel from "./TestimonialModel";
 import Testimonial from "./Testimonial";
 
-const AboutPage = (props) => {
+const AboutPage = ({ activeClassName }) => {
 	return (
-		<article className="about  active" data-page="about">
+		<article className={activeClassName} data-page="about">
+			<header>
+				<h2 className="h2 article-title">About me</h2>
+			</header>
+
 			<AboutMe />
 			{/*- service*/}
 			<Services />
 			{/*- testimonials*/}
 			<Testimonial />
-			{/*- testimonials modal*/}
-			<TestimonialModel />
 			{/*- clients*/}
 			<Clients />
 		</article>

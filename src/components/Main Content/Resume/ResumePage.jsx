@@ -1,148 +1,115 @@
 /** @format */
 
 import React from "react";
+import { BookOutline } from "react-ionicons";
+import TimelineItem from "./TimelineItem";
+import SkillItem from "./SkillItem";
 
-const ResumePage = (props) => {
+
+
+
+const ResumePage = ({ activeClassName }) => {
+	const educationData = [
+		{
+			title: "University School of the Arts",
+			dateRange: "2007 — 2008",
+			description:
+				"Nemo enim ipsam voluptatem, blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi.",
+		},
+		{
+			title: "New York Academy of Art",
+			dateRange: "2006 — 2007",
+			description:
+				"Ratione voluptatem sequi nesciunt, facere quisquam facere menda ossimus, omnis voluptas assumenda est omnis.",
+		},
+		{
+			title: "High School of Art and Design",
+			dateRange: "2002 — 2004",
+			description:
+				"Duis aute irure dolor in reprehenderit in voluptate, quia voluptas magni odit aut fugit, sed consequuntur magni dolores eos.",
+		},
+	];
+
+	const experienceData = [
+		{
+			title: "Creative Director",
+			dateRange: "2015 — Present",
+			description:
+				"Nemo enim ipsam voluptatem blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi.",
+		},
+		{
+			title: "Art Director",
+			dateRange: "2013 — 2015",
+			description:
+				"Nemo enim ipsam voluptatem, blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi.",
+		},
+		{
+			title: "Web Designer",
+			dateRange: "2010 — 2013",
+			description:
+				"Nemo enim ipsam voluptatem, blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi.",
+		},
+	];
+
+	const skillsData = [
+		{ title: "Web Design", percentage: 80 },
+		{ title: "Graphic Design", percentage: 70 },
+		{ title: "Branding", percentage: 90 },
+		{ title: "WordPress", percentage: 50 },
+	];
+
 	return (
-		<article className="resume" data-page="resume">
+		<article className={activeClassName} data-page="resume">
 			<header>
 				<h2 className="h2 article-title">Resume</h2>
 			</header>
 			<section className="timeline">
 				<div className="title-wrapper">
 					<div className="icon-box">
-						{/* <ion-icon name="book-outline" /> */}
+						<BookOutline cssClasses="ion-icon" color="white" width="35px" />
 					</div>
 					<h3 className="h3">Education</h3>
 				</div>
 				<ol className="timeline-list">
-					<li className="timeline-item">
-						<h4 className="h4 timeline-item-title">
-							University school of the arts
-						</h4>
-						<span>2007 — 2008</span>
-						<p className="timeline-text">
-							Nemo enims ipsam voluptatem, blanditiis praesentium
-							voluptum delenit atque corrupti, quos dolores et
-							quas molestias exceptur.
-						</p>
-					</li>
-					<li className="timeline-item">
-						<h4 className="h4 timeline-item-title">
-							New york academy of art
-						</h4>
-						<span>2006 — 2007</span>
-						<p className="timeline-text">
-							Ratione voluptatem sequi nesciunt, facere quisquams
-							facere menda ossimus, omnis voluptas assumenda est
-							omnis..
-						</p>
-					</li>
-					<li className="timeline-item">
-						<h4 className="h4 timeline-item-title">
-							High school of art and design
-						</h4>
-						<span>2002 — 2004</span>
-						<p className="timeline-text">
-							Duis aute irure dolor in reprehenderit in voluptate,
-							quila voluptas mag odit aut fugit, sed consequuntur
-							magni dolores eos.
-						</p>
-					</li>
+					{educationData.map((item, index) => (
+						<TimelineItem
+							key={index}
+							title={item.title}
+							dateRange={item.dateRange}
+							description={item.description}
+						/>
+					))}
 				</ol>
 			</section>
 			<section className="timeline">
 				<div className="title-wrapper">
 					<div className="icon-box">
-						{/* ============================ */}
-						{/* <BookOutline /> */}
-						{/* <ion-icon name="book-outline" /> */}
+						<BookOutline cssClasses="ion-icon" color="white" width="35px" />
 					</div>
 					<h3 className="h3">Experience</h3>
 				</div>
 				<ol className="timeline-list">
-					<li className="timeline-item">
-						<h4 className="h4 timeline-item-title">
-							Creative director
-						</h4>
-						<span>2015 — Present</span>
-						<p className="timeline-text">
-							Nemo enim ipsam voluptatem blanditiis praesentium
-							voluptum delenit atque corrupti, quos dolores et
-							qvuas molestias exceptur.
-						</p>
-					</li>
-					<li className="timeline-item">
-						<h4 className="h4 timeline-item-title">Art director</h4>
-						<span>2013 — 2015</span>
-						<p className="timeline-text">
-							Nemo enims ipsam voluptatem, blanditiis praesentium
-							voluptum delenit atque corrupti, quos dolores et
-							quas molestias exceptur.
-						</p>
-					</li>
-					<li className="timeline-item">
-						<h4 className="h4 timeline-item-title">Web designer</h4>
-						<span>2010 — 2013</span>
-						<p className="timeline-text">
-							Nemo enims ipsam voluptatem, blanditiis praesentium
-							voluptum delenit atque corrupti, quos dolores et
-							quas molestias exceptur.
-						</p>
-					</li>
+					{experienceData.map((item, index) => (
+						<TimelineItem
+							key={index}
+							title={item.title}
+							dateRange={item.dateRange}
+							description={item.description}
+						/>
+					))}
 				</ol>
 			</section>
+			
 			<section className="skill">
-				<h3 className="h3 skills-title">My skills</h3>
+				<h3 className="h3 skills-title">My Skills</h3>
 				<ul className="skills-list content-card">
-					<li className="skills-item">
-						<div className="title-wrapper">
-							<h5 className="h5">Web design</h5>
-							<data value={80}>80%</data>
-						</div>
-						<div className="skill-progress-bg">
-							<div
-								className="skill-progress-fill"
-								style={{ width: "80%" }}
-							/>
-						</div>
-					</li>
-					<li className="skills-item">
-						<div className="title-wrapper">
-							<h5 className="h5">Graphic design</h5>
-							<data value={70}>70%</data>
-						</div>
-						<div className="skill-progress-bg">
-							<div
-								className="skill-progress-fill"
-								style={{ width: "70%" }}
-							/>
-						</div>
-					</li>
-					<li className="skills-item">
-						<div className="title-wrapper">
-							<h5 className="h5">Branding</h5>
-							<data value={90}>90%</data>
-						</div>
-						<div className="skill-progress-bg">
-							<div
-								className="skill-progress-fill"
-								style={{ width: "90%" }}
-							/>
-						</div>
-					</li>
-					<li className="skills-item">
-						<div className="title-wrapper">
-							<h5 className="h5">WordPress</h5>
-							<data value={50}>50%</data>
-						</div>
-						<div className="skill-progress-bg">
-							<div
-								className="skill-progress-fill"
-								style={{ width: "50%" }}
-							/>
-						</div>
-					</li>
+					{skillsData.map((item, index) => (
+						<SkillItem
+							key={index}
+							title={item.title}
+							percentage={item.percentage}
+						/>
+					))}
 				</ul>
 			</section>
 		</article>

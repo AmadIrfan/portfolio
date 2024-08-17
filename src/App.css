@@ -213,7 +213,7 @@ article {
   z-index: -1;
 }
 
-.icon-box ion-icon { --ionicon-stroke-width: 35px; }
+.icon-box  ion-icon { --ionicon-stroke-width: 35px; }
 
 article { display: none; }
 
@@ -639,6 +639,7 @@ main {
 
 .modal-container.active {
   pointer-events: all;
+  background-color: black;
   visibility: visible;
 }
 
@@ -648,7 +649,7 @@ main {
   left: 0;
   width: 100%;
   height: 100vh;
-  background: hsl(0, 0%, 5%);
+  background: hsl(0, 0%, 5%) !important;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;

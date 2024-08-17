@@ -1,14 +1,14 @@
-import React from 'react';
-import './assets/js/script';
+import React from "react";
 import Main from './components/Main Content/Main';
 import SideBar from './components/SideBar/Sidebar';
 
-function App(props) {
+function App() {
   return (
     <>
-      <SideBar />   
+      <SideBar />
       <Main />
     </>
+
   );
 }
 

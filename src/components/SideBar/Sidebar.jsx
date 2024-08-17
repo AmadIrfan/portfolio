@@ -9,7 +9,6 @@ function SideBar() {
 
 	const handleToggle = (state) => {
 		console.log(isActive);
-		// console.log("this"); // This will log 'this', but in this context it might not be useful
 		setIsActive((prevState) => !state);
 	};
 

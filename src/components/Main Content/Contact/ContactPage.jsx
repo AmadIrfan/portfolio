@@ -1,10 +1,11 @@
 /** @format */
 
 import React from "react";
+import { PaperPlane } from "react-ionicons";
 
-const ContactPage = (props) => {
+const ContactPage = ({ activeClassName }) => {
 	return (
-		<article className="contact" data-page="contact">
+		<article className={activeClassName} data-page="contact">
 			<header>
 				<h2 className="h2 article-title">Contact</h2>
 			</header>
@@ -28,33 +29,28 @@ const ContactPage = (props) => {
 							name="fullname"
 							className="form-input"
 							placeholder="Full name"
-							// required=""
-							data-form-input=""
+							required
+							data-form-input
 						/>
 						<input
 							type="email"
 							name="email"
 							className="form-input"
 							placeholder="Email address"
-							// required=""
-							data-form-input=""
+							required
+							data-form-input
 						/>
 					</div>
 					<textarea
 						name="message"
 						className="form-input"
 						placeholder="Your Message"
-						// required=""
-						data-form-input=""
+						required
+						data-form-input
 						defaultValue={""}
 					/>
-					<button
-						className="form-btn"
-						type="submit"
-						// disabled=""
-						data-form-btn=""
-					>
-						{/* <ion-icon name="paper-plane" /> */}
+					<button className="form-btn" type="submit" disabled data-form-btn>
+						<PaperPlane />
 						<span>Send Message</span>
 					</button>
 				</form>

@@ -1,6 +1,10 @@
 /** @format */
 
 import React from "react";
+import IconDev from "../../../assets/images/icon-dev.svg";
+import IconApp from "../../../assets/images/icon-app.svg";
+import IconPhoto from "../../../assets/images/icon-photo.svg";
+import IconDesign from "../../../assets/images/icon-design.svg";
 
 const Services = (props) => {
 	return (
@@ -10,8 +14,7 @@ const Services = (props) => {
 				<li className="service-item">
 					<div className="service-icon-box">
 						<img
-							src="./assets/images/icon-design.svg
-          "
+							src={IconDesign}
 							alt="design icon"
 							width={40}
 						/>
@@ -27,7 +30,8 @@ const Services = (props) => {
 				<li className="service-item">
 					<div className="service-icon-box">
 						<img
-							src="./assets/images/icon-dev.svg"
+							src={IconDev}
+							// src="./assets/images/icon-dev.svg"
 							alt="Web development icon"
 							width={40}
 						/>
@@ -45,7 +49,8 @@ const Services = (props) => {
 				<li className="service-item">
 					<div className="service-icon-box">
 						<img
-							src="./assets/images/icon-app.svg"
+							src={IconApp}
+							// src="./assets/images/icon-app.svg"
 							alt="mobile app icon"
 							width={40}
 						/>
@@ -61,7 +66,8 @@ const Services = (props) => {
 				<li className="service-item">
 					<div className="service-icon-box">
 						<img
-							src="./assets/images/icon-photo.svg"
+							src={IconPhoto }
+							// src="./assets/images/icon-photo.svg"
 							alt="camera icon"
 							width={40}
 						/>
@@ -78,6 +84,5 @@ const Services = (props) => {
 		</section>
 	);
 };
-
 
 export default Services;

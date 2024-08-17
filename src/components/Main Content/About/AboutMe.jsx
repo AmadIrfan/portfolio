@@ -5,9 +5,6 @@ import React from "react";
 const AboutMe = (props) => {
 	return (
 		<>
-			<header>
-				<h2 className="h2 article-title">About me</h2>
-			</header>
 			<section className="about-text">
 				<p>
 					I'm Creative Director and UI/UX Designer from Sydney,

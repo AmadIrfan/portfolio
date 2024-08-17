@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-// import { LogoFacebook, LogoTwitter, LogoInstagram } from "react-ionicons";
+import { LogoFacebook, LogoTwitter, LogoInstagram } from "react-ionicons";
 const SocialMediaLink = () => {
 	return (
 		<>
@@ -9,17 +9,17 @@ const SocialMediaLink = () => {
 			<ul className="social-list">
 				<li className="social-item">
 					<a href="/#" className="social-link">
-						{/* <LogoFacebook /> */}
+						<LogoFacebook />
 					</a>
 				</li>
 				<li className="social-item">
 					<a href="/#" className="social-link">
-						{/* <LogoTwitter /> */}
+						<LogoTwitter />
 					</a>
 				</li>
 				<li className="social-item">
 					<a href="/#" className="social-link">
-						{/* <LogoInstagram /> */}
+						<LogoInstagram />
 					</a>
 				</li>
 			</ul>
