@@ -3,6 +3,7 @@ import { ChevronDown, Github, Linkedin } from "lucide-react";
 import { Button } from "./ui/button";
 import type { Profile, Contact } from "../types/portfolio.d";
 import { motion } from "framer-motion";
+import profileImg from "../assets/imges.png"; // Adjust the path as necessary
 
 interface HeroProps {
 	darkMode?: boolean;
@@ -70,7 +71,7 @@ const Hero: React.FC<HeroProps> = ({
 						className="mb-6"
 					>
 						<img
-							src={profile.imageUrl}
+							src={!profile.imageUrl ? profileImg : profile.imageUrl}
 							alt={profile.name}
 							className="w-44 h-44 rounded-full mx-auto border-4 border-white shadow-2xl hover:scale-105 transition-transform duration-300"
 						/>

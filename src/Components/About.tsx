@@ -5,6 +5,7 @@ import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import AnimatedCounter from "./AnimatedCounter";
 import type { Profile } from "../types/portfolio";
+import profileImg from "../assets/img.jpg"; // Adjust the path as necessary
 
 interface AboutProps {
 	darkMode?: boolean;
@@ -41,7 +42,7 @@ const About: React.FC<AboutProps> = ({ darkMode, aboutRef, profile }) => {
 						transition={{ duration: 0.5 }}
 					>
 						<img
-							src={profile.imageUrl}
+							src={!profile.imageUrl ? profileImg : profile.imageUrl}
 							alt={profile.name}
 							className="rounded-2xl shadow-2xl w-full max-w-md mx-auto object-cover"
 						/>
