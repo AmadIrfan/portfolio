@@ -2,13 +2,15 @@
   "name": "portfolio",
   "private": true,
   "version": "0.0.1",
-  "homepage": "",
+  "homepage": "http://amadirfan.github.io/portfolio",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
