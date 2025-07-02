@@ -1,6 +1,6 @@
 import React, { type RefObject } from "react";
 import type { Project } from "../types/portfolio";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, WorkflowIcon } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface ProjectsProps {
@@ -47,18 +47,21 @@ const Projects: React.FC<ProjectsProps> = ({
 							}`}
 						>
 							<div className="relative overflow-hidden">
-								<img
-									src={project.image}
-									alt={project.title}
-									className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-								/>
+								{project.image && (
+									<img
+										src={project.image}
+										alt={project.title}
+										className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+									/>
+								)}
 								<div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 							</div>
 
 							<div className="p-6 space-y-4">
-								<h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+								<div className="text-xl font-semibold text-gray-900 dark:text-white">
+									{project.isCompleted && <WorkflowIcon className="inline" />}{" "}
 									{project.title}
-								</h3>
+								</div>
 								<p className="text-sm text-gray-600 dark:text-gray-400">
 									{project.description}
 								</p>

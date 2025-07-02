@@ -1,4 +1,4 @@
-import React, { type RefObject } from "react";
+import React, { useEffect, useState, type RefObject } from "react";
 import { motion } from "framer-motion";
 import { Download } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
@@ -14,6 +14,21 @@ interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({ darkMode, aboutRef, profile }) => {
+	const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+	// Change image every 5 seconds
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentImageIndex((prevIndex) =>
+				profile.imageUrl.length > 0
+					? (prevIndex + 1) % profile.imageUrl.length
+					: 0
+			);
+		}, 5000); // 5 seconds
+
+		return () => clearInterval(interval);
+	}, [profile.imageUrl]);
+
 	return (
 		<section
 			id="about"
@@ -42,7 +57,11 @@ const About: React.FC<AboutProps> = ({ darkMode, aboutRef, profile }) => {
 						transition={{ duration: 0.5 }}
 					>
 						<img
-							src={!profile.imageUrl ? profileImg : profile.imageUrl}
+							src={
+								profile.imageUrl.length === 0
+									? profileImg
+									: profile.imageUrl[currentImageIndex]
+							}
 							alt={profile.name}
 							className="rounded-2xl shadow-2xl w-full max-w-md mx-auto object-cover"
 						/>

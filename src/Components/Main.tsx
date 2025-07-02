@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Hero from "./Hero";
 import About from "./About";
 import Footer from "./Footer";
@@ -12,7 +12,7 @@ import Experiences from "./Experience";
 
 import Certifications from "./Certifications";
 import SocialSidebar from "./SocialSidebar";
-import type { PortfolioData } from "../types/portfolio";
+import type { PortfolioData, SectionInterface } from "../types/portfolio";
 interface MainProps {
 	portfolioData: PortfolioData;
 	setLoaderDarkMode: (v: boolean) => void;
@@ -32,23 +32,71 @@ const Main: React.FC<MainProps> = ({ portfolioData, setLoaderDarkMode }) => {
 	const reviewsRef = useRef<HTMLElement>(null);
 	const contactRef = useRef<HTMLElement>(null);
 
-	const sections = [
-		// { id: "home", label: "Home", ref: heroRef },
-		{ id: "about", label: "About", ref: aboutRef },
-		{ id: "skills", label: "Tech Expertise", ref: skillsRef },
-		{ id: "education", label: "Education", ref: educationRef },
-		{ id: "experience", label: "Experience", ref: experienceRef },
-		{ id: "projects", label: "Projects", ref: projectsRef },
-		// { id: "reviews", label: "Reviews", ref: reviewsRef },
-		{ id: "certifications", label: "Certification", ref: certificationsRef },
-		{ id: "contact", label: "Contact", ref: contactRef },
-	];
+	const sections: SectionInterface[] = useMemo(
+		() => [
+			{
+				id: "about",
+				label: "About",
+				ref: aboutRef,
+				enable: portfolioData.showSections.about,
+			},
+			{
+				id: "skills",
+				label: "Tech Expertise",
+				ref: skillsRef,
+				enable: portfolioData.showSections.skills,
+			},
+			{
+				id: "education",
+				label: "Education",
+				ref: educationRef,
+				enable: portfolioData.showSections.education,
+			},
+			{
+				id: "experience",
+				label: "Experience",
+				ref: experienceRef,
+				enable: portfolioData.showSections.experience,
+			},
+			{
+				id: "projects",
+				label: "Projects",
+				ref: projectsRef,
+				enable: portfolioData.showSections.projects,
+			},
+			{
+				id: "reviews",
+				label: "Reviews",
+				ref: reviewsRef,
+				enable: portfolioData.showSections.reviews,
+			},
+			{
+				id: "certifications",
+				label: "Certification",
+				ref: certificationsRef,
+				enable: portfolioData.showSections.certifications,
+			},
+			{
+				id: "contact",
+				label: "Contact",
+				ref: contactRef,
+				enable: portfolioData.showSections.contact,
+			},
+		],
+		[portfolioData]
+	);
 
 	function setAppDarkMode(v: boolean) {
 		setDarkMode(v);
 		setLoaderDarkMode(v);
 	}
 	useEffect(() => {
+		const prefersDark = window.matchMedia(
+			"(prefers-color-scheme: dark)"
+		).matches;
+		setDarkMode(prefersDark);
+		setLoaderDarkMode(prefersDark);
+
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -60,22 +108,44 @@ const Main: React.FC<MainProps> = ({ portfolioData, setLoaderDarkMode }) => {
 			{ threshold: 0.3 }
 		);
 
-		sections.forEach((section) => {
-			if (section.ref.current) {
-				observer.observe(section.ref.current);
-			}
+		const elements = [
+			aboutRef.current,
+			skillsRef.current,
+			educationRef.current,
+			experienceRef.current,
+			projectsRef.current,
+			reviewsRef.current,
+			certificationsRef.current,
+			contactRef.current,
+		];
+
+		elements.forEach((el) => {
+			if (el) observer.observe(el);
 		});
 
-		return () => observer.disconnect();
+		return () => {
+			elements.forEach((el) => {
+				if (el) observer.unobserve(el);
+			});
+			observer.disconnect();
+		};
 	}, []);
 
 	const scrollToSection = (sectionId: string) => {
 		const section = sections.find((s) => s.id === sectionId);
 
-		if (section?.ref.current) {
-			section.ref.current.scrollIntoView({ behavior: "smooth" });
+		if (!section || !section.ref.current) return;
+
+		// Scroll smoothly to the section
+		section.ref.current.scrollIntoView({ behavior: "smooth" });
+
+		// Immediately update active section for better UX
+		setActiveSection(section.id);
+
+		// Close mobile menu if open
+		if (mobileMenuOpen) {
+			setMobileMenuOpen(false);
 		}
-		setMobileMenuOpen(false);
 	};
 
 	return (
@@ -94,65 +164,88 @@ const Main: React.FC<MainProps> = ({ portfolioData, setLoaderDarkMode }) => {
 				activeSection={activeSection}
 				scrollToSection={scrollToSection}
 			/>
-			<Hero
-				profile={portfolioData.profile}
-				contact={portfolioData.contact}
-				scrollToSection={scrollToSection}
-				heroRef={heroRef}
-				darkMode={darkMode}
-			/>
-			<About
-				profile={portfolioData.profile}
-				darkMode={darkMode}
-				aboutRef={aboutRef}
-			/>
-			<Skills
-				skills={portfolioData.skills}
-				darkMode={darkMode}
-				skillsRef={skillsRef}
-			/>
-			<Educations
-				education={portfolioData.education}
-				darkMode={darkMode}
-				educationRef={educationRef}
-			/>
-			<Experiences
-				experience={portfolioData.experience}
-				darkMode={darkMode}
-				experienceRef={experienceRef}
-			/>
-			<Projects
-				projects={portfolioData.projects}
-				darkMode={darkMode}
-				projectsRef={projectsRef}
-			/>
-			<Certifications
-				darkMode={darkMode}
-				certificationsRef={certificationsRef}
-				certifications={portfolioData.certifications}
-			/>
-			<Reviews
-				reviews={portfolioData.reviews}
-				darkMode={darkMode}
-				reviewsRef={reviewsRef}
-			/>
-			<Contacts
-				contact={portfolioData.contact}
-				darkMode={darkMode}
-				contactRef={contactRef}
-			/>
-			<Footer
-				profile={portfolioData.profile}
-				contact={portfolioData.contact}
-				darkMode={darkMode}
-				scrollToSection={scrollToSection}
-				sections={sections}
-			/>
-			<SocialSidebar
-				darkMode={darkMode}
-				socialLinks={portfolioData.contact.social}
-				position={"right"}
-			/>
+
+			{portfolioData.showSections.hero && (
+				<Hero
+					profile={portfolioData.profile}
+					contact={portfolioData.contact}
+					scrollToSection={scrollToSection}
+					heroRef={heroRef}
+					darkMode={darkMode}
+				/>
+			)}
+			{portfolioData.showSections.about && (
+				<About
+					profile={portfolioData.profile}
+					darkMode={darkMode}
+					aboutRef={aboutRef}
+				/>
+			)}
+			{portfolioData.showSections.skills && (
+				<Skills
+					skills={portfolioData.skills}
+					darkMode={darkMode}
+					skillsRef={skillsRef}
+				/>
+			)}
+			{portfolioData.showSections.education && (
+				<Educations
+					education={portfolioData.education}
+					darkMode={darkMode}
+					educationRef={educationRef}
+				/>
+			)}
+			{portfolioData.showSections.experience && (
+				<Experiences
+					experience={portfolioData.experience}
+					darkMode={darkMode}
+					experienceRef={experienceRef}
+				/>
+			)}
+			{portfolioData.showSections.projects && (
+				<Projects
+					projects={portfolioData.projects}
+					darkMode={darkMode}
+					projectsRef={projectsRef}
+				/>
+			)}
+			{portfolioData.showSections.certifications && (
+				<Certifications
+					darkMode={darkMode}
+					certificationsRef={certificationsRef}
+					certifications={portfolioData.certifications}
+				/>
+			)}
+			{portfolioData.showSections.reviews && (
+				<Reviews
+					reviews={portfolioData.reviews}
+					darkMode={darkMode}
+					reviewsRef={reviewsRef}
+				/>
+			)}
+			{portfolioData.showSections.contact && (
+				<Contacts
+					contact={portfolioData.contact}
+					darkMode={darkMode}
+					contactRef={contactRef}
+				/>
+			)}
+			{portfolioData.showSections.footer && (
+				<Footer
+					profile={portfolioData.profile}
+					contact={portfolioData.contact}
+					darkMode={darkMode}
+					scrollToSection={scrollToSection}
+					sections={sections}
+				/>
+			)}
+			{portfolioData.showSections.sideIcons && (
+				<SocialSidebar
+					darkMode={darkMode}
+					socialLinks={portfolioData.contact.social}
+					position={"right"}
+				/>
+			)}
 		</div>
 	);
 };

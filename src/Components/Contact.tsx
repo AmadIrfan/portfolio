@@ -1,8 +1,8 @@
 import React, { useState, type RefObject } from "react";
-import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Contact } from "../types/portfolio.d";
-
+import VerticalSocialIcons from "./VerticalSocialIcons";
 interface ContactProps {
 	contact: Contact;
 	darkMode: boolean;
@@ -73,20 +73,7 @@ const Contacts: React.FC<ContactProps> = ({
 						</div>
 
 						<div className="flex gap-4 mt-8">
-							<a
-								href={contact.social.linkedin}
-								aria-label="LinkedIn"
-								className="p-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 hover:scale-110 transition"
-							>
-								<Linkedin size={20} />
-							</a>
-							<a
-								href={contact.social.github}
-								aria-label="GitHub"
-								className="p-3 bg-gray-800 text-white rounded-full hover:bg-gray-900 hover:scale-110 transition"
-							>
-								<Github size={20} />
-							</a>
+							<VerticalSocialIcons contact={contact} />
 						</div>
 					</motion.div>
 
@@ -97,7 +84,7 @@ const Contacts: React.FC<ContactProps> = ({
 							darkMode ? "bg-gray-800" : "bg-white"
 						}`}
 					>
-						<div className="mb-6">
+						<div className="mb-4">
 							<label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
 								Name
 							</label>
@@ -107,7 +94,7 @@ const Contacts: React.FC<ContactProps> = ({
 								onChange={(e) =>
 									setFormData({ ...formData, name: e.target.value })
 								}
-								className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 transition ${
+								className={`w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 transition ${
 									darkMode
 										? "bg-gray-700 border-gray-600 text-white"
 										: "bg-white border-gray-300 text-gray-800"
@@ -116,7 +103,7 @@ const Contacts: React.FC<ContactProps> = ({
 								required
 							/>
 						</div>
-						<div className="mb-6">
+						<div className="mb-4">
 							<label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
 								Email
 							</label>
@@ -126,7 +113,7 @@ const Contacts: React.FC<ContactProps> = ({
 								onChange={(e) =>
 									setFormData({ ...formData, email: e.target.value })
 								}
-								className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 transition ${
+								className={`w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 transition ${
 									darkMode
 										? "bg-gray-700 border-gray-600 text-white"
 										: "bg-white border-gray-300 text-gray-800"
@@ -135,7 +122,7 @@ const Contacts: React.FC<ContactProps> = ({
 								required
 							/>
 						</div>
-						<div className="mb-6">
+						<div className="mb-4">
 							<label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
 								Message
 							</label>
@@ -145,7 +132,7 @@ const Contacts: React.FC<ContactProps> = ({
 									setFormData({ ...formData, message: e.target.value })
 								}
 								rows={5}
-								className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 resize-none transition ${
+								className={`w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 resize-none transition ${
 									darkMode
 										? "bg-gray-700 border-gray-600 text-white"
 										: "bg-white border-gray-300 text-gray-800"

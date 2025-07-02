@@ -1,9 +1,10 @@
 import React, { useEffect, useState, type RefObject } from "react";
-import { ChevronDown, Github, Linkedin } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import type { Profile, Contact } from "../types/portfolio.d";
 import { motion } from "framer-motion";
 import profileImg from "../assets/imges.png"; // Adjust the path as necessary
+import VerticalSocialIcons from "./VerticalSocialIcons";
 
 interface HeroProps {
 	darkMode?: boolean;
@@ -71,7 +72,11 @@ const Hero: React.FC<HeroProps> = ({
 						className="mb-6"
 					>
 						<img
-							src={!profile.imageUrl ? profileImg : profile.imageUrl}
+							src={
+								profile.imageUrl.length === 0
+									? profileImg
+									: profile.imageUrl[profile.heroImageIndex]
+							}
 							alt={profile.name}
 							className="w-44 h-44 rounded-full mx-auto border-4 border-white shadow-2xl hover:scale-105 transition-transform duration-300"
 						/>
@@ -105,24 +110,7 @@ const Hero: React.FC<HeroProps> = ({
 					</motion.p>
 
 					{/* Buttons */}
-					<motion.div>
-						<div className="flex gap-4 mt-8 justify-center">
-							<a
-								href={contact.social.linkedin}
-								aria-label="LinkedIn"
-								className="p-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 hover:scale-110 transition"
-							>
-								<Linkedin size={20} />
-							</a>
-							<a
-								href={contact.social.github}
-								aria-label="GitHub"
-								className="p-3 bg-gray-800 text-white rounded-full hover:bg-gray-900 hover:scale-110 transition"
-							>
-								<Github size={20} />
-							</a>
-						</div>
-					</motion.div>
+					<VerticalSocialIcons contact={contact} />
 					<motion.div
 						initial={{ opacity: 0, y: 10 }}
 						animate={{ opacity: 1, y: 0 }}

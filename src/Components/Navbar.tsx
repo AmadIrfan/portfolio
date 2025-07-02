@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu, Moon, Sun } from "lucide-react";
-import type { Profile } from "../types/portfolio";
+import type { Profile, SectionInterface } from "../types/portfolio";
 import { Toggle } from "./ui/toggle";
 
 interface NavbarProps {
@@ -12,11 +12,7 @@ interface NavbarProps {
 	setMobileMenuOpen: (b: boolean) => void;
 	mobileMenuOpen: boolean;
 	activeSection: string;
-	sections: {
-		id: string;
-		label: string;
-		ref: React.RefObject<HTMLElement> | React.RefObject<null>;
-	}[];
+	sections: SectionInterface[];
 	scrollToSection: (id: string) => void;
 }
 
@@ -25,6 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({
 	setDarkMode,
 	profile,
 	sections,
+
 	activeSection,
 	mobileMenuOpen,
 	setMobileMenuOpen,
@@ -45,31 +42,34 @@ const Navbar: React.FC<NavbarProps> = ({
 				</div>
 
 				{/* Desktop Navigation */}
-				<nav className="hidden md:flex space-x-6 items-center">
-					{sections.map((section) => (
-						<Button
-							key={section.id}
-							variant="ghost"
-							size="sm"
-							onClick={() => scrollToSection(section.id)}
-							className={`relative px-2 py-1 ${
-								activeSection === section.id
-									? "text-blue-500 font-semibold"
-									: darkMode
-									? "text-gray-300 hover:text-white"
-									: "text-gray-700 hover:text-gray-900"
-							}`}
-						>
-							{section.label}
-							<span
-								className={`absolute bottom-0 left-0 h-0.5 w-full bg-blue-500 transition-transform duration-300 ${
-									activeSection === section.id
-										? "scale-x-100"
-										: "scale-x-0 group-hover:scale-x-100"
-								}`}
-							/>
-						</Button>
-					))}
+				<nav className="hidden md:flex space-x-5 items-center">
+					{sections.map(
+						(section) =>
+							section.enable && (
+								<Button
+									key={section.id}
+									variant="ghost"
+									size="sm"
+									onClick={() => scrollToSection(section.id)}
+									className={`relative px-2 py-1 ${
+										activeSection === section.id
+											? "text-blue-500 font-semibold"
+											: darkMode
+											? "text-gray-300 hover:text-white"
+											: "text-gray-700 hover:text-gray-900"
+									}`}
+								>
+									{section.label}
+									<span
+										className={`absolute bottom-0 left-0 h-0.5 w-full bg-blue-500 transition-transform duration-300 ${
+											activeSection === section.id
+												? "scale-x-100"
+												: "scale-x-0 group-hover:scale-x-100"
+										}`}
+									/>
+								</Button>
+							)
+					)}
 				</nav>
 
 				{/* Actions */}

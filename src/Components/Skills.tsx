@@ -1,7 +1,8 @@
-import React, { useState, type RefObject } from "react";
+import React, { useEffect, useState, type RefObject } from "react";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import type { Skill } from "../types/portfolio";
 import { motion } from "framer-motion";
+
 
 interface SkillsProps {
 	skills: Skill[];
@@ -12,7 +13,22 @@ interface SkillsProps {
 const Skills: React.FC<SkillsProps> = ({ skills, darkMode, skillsRef }) => {
 	const [category, setCategory] = useState("All");
 
-	const categories = ["All", "language", "tool", "framework", "library"];
+	const [categories, setCategories] = useState<string[]>([
+		"All",
+		"language",
+		"tool",
+		"framework",
+		"library",
+	]);
+
+	useEffect(() => {
+		if (skills.length > 0) {
+			const uniqueCategories = Array.from(
+				new Set(skills.map((skill) => skill.category.toLowerCase()))
+			);
+			setCategories(["All", ...uniqueCategories]);
+		}
+	}, [skills]);
 
 	const filteredSkills =
 		category === "All"
@@ -46,12 +62,16 @@ const Skills: React.FC<SkillsProps> = ({ skills, darkMode, skillsRef }) => {
 					className="mb-10 justify-center flex-row"
 					onValueChange={setCategory}
 				>
-					<TabsList className="flex justify-center bg-transparent flex-wrap gap-3 mb-10">
-						{categories.map((cat) => (
+					<TabsList className="flex bg-transparent gap-y-1.5 flex-wrap justify-center mb-5">
+						{categories.map((cat, index) => (
 							<TabsTrigger
 								key={cat}
 								value={cat}
-								className="capitalize text-sm px-4 py-2 rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition"
+								className={`capitalize text-sm mx-0 px-4 py-2 rounded-none ${
+									index == 0 ? "rounded-l-sm" : ""
+								}
+									${index == categories.length - 1 ? "rounded-r-sm" : ""}
+										border  border-gray-500 text-blue-500 hover:bg-gray-500 hover:text-white transition`}
 							>
 								{cat}
 							</TabsTrigger>
@@ -60,14 +80,14 @@ const Skills: React.FC<SkillsProps> = ({ skills, darkMode, skillsRef }) => {
 				</Tabs>
 
 				{/* Skills Grid */}
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+				<div className="grid grid-cols-4 sm:grid-cols-7 place-items-center mt-2 sm:mx-5 md:mx-10 lg:mx-15 md:grid-cols-8 lg:grid-cols-9 gap-x-3 gap-y-3 ">
 					{filteredSkills.map((skill, idx) => (
 						<motion.div
 							key={idx}
 							initial={{ opacity: 0, scale: 0.95 }}
 							whileInView={{ opacity: 1, scale: 1 }}
 							transition={{ duration: 0.3, delay: idx * 0.05 }}
-							className={`flex items-center gap-4 px-5 py-4 w-full max-w-xs border rounded-xl backdrop-blur-sm shadow-sm hover:shadow-lg transition ${
+							className={`flex flex-col justify-items-center items-center py-8 w-full max-w-xs border rounded-md backdrop-blur-sm shadow-sm hover:shadow-lg transition ${
 								darkMode
 									? "bg-white/5 border-gray-700 text-white"
 									: "bg-white/50 border-gray-200 text-gray-800"
@@ -77,13 +97,13 @@ const Skills: React.FC<SkillsProps> = ({ skills, darkMode, skillsRef }) => {
 								<img
 									src={skill.logo}
 									alt={skill.name}
-									className="w-10 h-10 object-contain"
+									className="w-10 h-10 pt-2 object-contain"
 								/>
 							)}
-							<div className="text-left">
-								<p className="text-lg font-medium">{skill.name}</p>
+							<div className="text pt-2">
+								<p className="text-md font-medium">{skill.name}</p>
 								<p className="text-sm text-gray-500 dark:text-gray-400">
-									{/* {skill.level} */}
+									{skill.level}
 								</p>
 							</div>
 						</motion.div>

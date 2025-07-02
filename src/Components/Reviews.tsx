@@ -101,7 +101,6 @@ const Reviews: React.FC<ReviewsProps> = ({ reviews, darkMode, reviewsRef }) => {
 							{reviews.map((_, index) => (
 								<button
 									key={index}
-									// onClick={() => setCurrentReview(index)}
 									className={`w-3 h-3 rounded-full transition-all duration-300 ${
 										index === currentReview
 											? "bg-blue-500 scale-125"

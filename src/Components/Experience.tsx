@@ -60,7 +60,7 @@ const Experiences: React.FC<ExperienceProps> = ({
 									{exp.company}
 								</p>
 								<p className="text-sm mb-3 text-gray-500 dark:text-gray-400">
-									{exp.duration}
+									{exp.startDate}-{exp.endDate}
 								</p>
 								<p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
 									{exp.description}

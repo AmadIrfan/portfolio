@@ -60,7 +60,7 @@ const Educations: React.FC<EducationProps> = ({
 									{edu.institution}
 								</p>
 								<p className="text-sm mb-3 text-gray-500 dark:text-gray-400">
-									{edu.year}
+									{edu.startYear} - {edu.endYear}
 								</p>
 								<p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
 									{edu.description}

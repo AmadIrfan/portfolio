@@ -6,9 +6,6 @@ import db from "./firebase/config";
 import Main from "./Components/Main";
 import portfolioData from "./data/portfolioData";
 
-// Import your main portfolio display component
-// import PortfolioPage from "./Components/PortfolioPage";
-
 const App = () => {
 	const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);
 	const [loading, setLoading] = useState(true);
@@ -21,6 +18,7 @@ const App = () => {
 				if (snapshot.exists()) {
 					const data: PortfolioData = snapshot.val();
 					setPortfolio(data);
+					// setPortfolio(portfolioData);
 				} else {
 					setPortfolio(null);
 				}

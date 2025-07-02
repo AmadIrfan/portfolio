@@ -46,7 +46,7 @@ const Certifications: React.FC<CertificationsProps> = ({
 							<h3 className="text-xl font-bold">{cert.title}</h3>
 							<p className="text-blue-500 font-semibold">{cert.issuer}</p>
 							<p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-								{cert.date}
+								{cert.startDate}- {cert.endDate || "Present"}
 							</p>
 							{cert.certificateUrl && (
 								<a
