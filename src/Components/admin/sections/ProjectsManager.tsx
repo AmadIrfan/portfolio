@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import { type FC } from "react";
 import type { Project } from "../../../types/portfolio";
 
 const ProjectsManager: FC<{ projects: Project[] }> = ({ projects }) => {
@@ -40,8 +40,8 @@ const ProjectsManager: FC<{ projects: Project[] }> = ({ projects }) => {
 
 						<div className="px-2 mb-2">
 							<label htmlFor="">Description</label>{" "}
-                            <textarea
-                                readOnly
+							<textarea
+								readOnly
 								key={`cc2-${index}`}
 								className=" block p-2 border rounded w-full "
 								value={project.description}
