@@ -65,16 +65,16 @@ const Main: React.FC<MainProps> = ({ portfolioData, setLoaderDarkMode }) => {
 				enable: portfolioData.showSections.projects,
 			},
 			{
-				id: "reviews",
-				label: "Reviews",
-				ref: reviewsRef,
-				enable: portfolioData.showSections.reviews,
-			},
-			{
 				id: "certifications",
 				label: "Certification",
 				ref: certificationsRef,
 				enable: portfolioData.showSections.certifications,
+			},
+			{
+				id: "reviews",
+				label: "Reviews",
+				ref: reviewsRef,
+				enable: portfolioData.showSections.reviews,
 			},
 			{
 				id: "contact",

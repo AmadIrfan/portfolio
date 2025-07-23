@@ -6,10 +6,16 @@ import db from "./firebase/config";
 import Main from "./Components/Main";
 import portfolioData from "./data/portfolioData";
 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AdminDashboard from "./Components/AdminDashboard";
+import PrivateRoute from "./Components/PrivateRoute";
+import Login from "./Components/Login";
+
 const App = () => {
 	const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);
 	const [loading, setLoading] = useState(true);
-	const [darkMode, setDarkMode] = useState(true); // Assuming dark mode is a state in your app
+	const [darkMode, setDarkMode] = useState(true);
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -18,7 +24,6 @@ const App = () => {
 				if (snapshot.exists()) {
 					const data: PortfolioData = snapshot.val();
 					setPortfolio(data);
-					// setPortfolio(portfolioData);
 				} else {
 					setPortfolio(null);
 				}
@@ -32,16 +37,33 @@ const App = () => {
 		fetchData();
 	}, []);
 
+	const finalPortfolio = portfolio ?? portfolioData;
+
 	if (loading) return <Loader darkMode={darkMode} />;
-	if (!portfolio)
-		return (
-			<Main portfolioData={portfolioData} setLoaderDarkMode={setDarkMode} />
-		);
+
 	return (
-		<Main
-			portfolioData={portfolio === null ? portfolioData : portfolio}
-			setLoaderDarkMode={setDarkMode}
-		/>
+		<Router>
+			<Routes>
+				<Route
+					path="/portfolio"
+					element={
+						<Main
+							portfolioData={finalPortfolio}
+							setLoaderDarkMode={setDarkMode}
+						/>
+					}
+				/>
+				<Route path="/portfolio/login" element={<Login />} />
+				<Route
+					path="/portfolio/admin"
+					element={
+						<PrivateRoute>
+							<AdminDashboard portfolio={ finalPortfolio} />
+						</PrivateRoute>
+					}
+				/>
+			</Routes>
+		</Router>
 	);
 };
 

@@ -3,7 +3,6 @@ import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import type { Skill } from "../types/portfolio";
 import { motion } from "framer-motion";
 
-
 interface SkillsProps {
 	skills: Skill[];
 	darkMode?: boolean;
@@ -78,31 +77,32 @@ const Skills: React.FC<SkillsProps> = ({ skills, darkMode, skillsRef }) => {
 						))}
 					</TabsList>
 				</Tabs>
-
+				<div className="h-5"></div>
 				{/* Skills Grid */}
-				<div className="grid grid-cols-4 sm:grid-cols-7 place-items-center mt-2 sm:mx-5 md:mx-10 lg:mx-15 md:grid-cols-8 lg:grid-cols-9 gap-x-3 gap-y-3 ">
+				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-8 gap-x-3 gap-y-3 sm:mx-5 md:mx-10 lg:mx-15 mt-2 place-items-center">
 					{filteredSkills.map((skill, idx) => (
 						<motion.div
 							key={idx}
 							initial={{ opacity: 0, scale: 0.95 }}
 							whileInView={{ opacity: 1, scale: 1 }}
 							transition={{ duration: 0.3, delay: idx * 0.05 }}
-							className={`flex flex-col justify-items-center items-center py-8 w-full max-w-xs border rounded-md backdrop-blur-sm shadow-sm hover:shadow-lg transition ${
-								darkMode
-									? "bg-white/5 border-gray-700 text-white"
-									: "bg-white/50 border-gray-200 text-gray-800"
-							}`}
+							className={`flex flex-col items-center justify-items-center py-6 px-4 w-full min-w-[120px] max-w-xs border rounded-md backdrop-blur-sm shadow-sm hover:shadow-lg transition
+        ${
+					darkMode
+						? "bg-white/5 border-gray-700 text-white"
+						: "bg-white/50 border-gray-200 text-gray-800"
+				}`}
 						>
 							{skill.logo && (
 								<img
 									src={skill.logo}
 									alt={skill.name}
-									className="w-10 h-10 pt-2 object-contain"
+									className="w-8 h-8 sm:w-10 sm:h-10 pt-1 object-contain"
 								/>
 							)}
-							<div className="text pt-2">
-								<p className="text-md font-medium">{skill.name}</p>
-								<p className="text-sm text-gray-500 dark:text-gray-400">
+							<div className="text pt-2 text-center">
+								<p className="text-sm sm:text-base font-medium">{skill.name}</p>
+								<p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
 									{skill.level}
 								</p>
 							</div>

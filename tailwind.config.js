@@ -3,7 +3,11 @@ export default {
     darkMode: "class",
     theme: {
         extend: {
+            colors: {
+                primary: { 'default': '#9333ea' }
+            },
             backgroundImage: {
+                "hero-pattern": "url('/herobg.webp')",
                 network: "url('/network.svg')", // our animated pattern
             },
             animation: {
@@ -20,6 +24,7 @@ export default {
                     "50%": { opacity: "0" },
                 },
             },
+
         },
     },
     plugins: [],

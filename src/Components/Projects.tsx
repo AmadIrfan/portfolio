@@ -59,7 +59,7 @@ const Projects: React.FC<ProjectsProps> = ({
 
 							<div className="p-6 space-y-4">
 								<div className="text-xl font-semibold text-gray-900 dark:text-white">
-									{project.isCompleted && <WorkflowIcon className="inline" />}{" "}
+									{!project.isCompleted && <WorkflowIcon className="inline" />}{" "}
 									{project.title}
 								</div>
 								<p className="text-sm text-gray-600 dark:text-gray-400">

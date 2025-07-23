@@ -60,7 +60,7 @@ const Hero: React.FC<HeroProps> = ({
 		<section
 			id="home"
 			ref={heroRef}
-			className="relative min-h-screen w-full pt-24 flex items-center justify-center overflow-hidden"
+			className="relative z-0 min-h-screen w-full pt-24 flex items-center justify-center overflow-hidden"
 		>
 			<div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="text-center space-y-6">
