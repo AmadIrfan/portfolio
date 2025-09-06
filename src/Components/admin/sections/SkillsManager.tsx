@@ -15,7 +15,6 @@ const SkillsManager: React.FC<{ skill: Skill[] }> = ({ skill }) => {
 		percentage: "",
 		category: "",
 	});
-	
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (selectedSkill) {
@@ -96,6 +95,7 @@ const SkillsManager: React.FC<{ skill: Skill[] }> = ({ skill }) => {
 								</td>
 								<td key={`c5-${idx}`} className="border px-1">
 									<button
+										title="btn"
 										key={`edit-${idx}`}
 										onClick={() => {
 											setSelectedSkill(skill);

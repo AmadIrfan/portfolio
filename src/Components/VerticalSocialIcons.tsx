@@ -12,17 +12,19 @@ const VerticalSocialIcons: React.FC<VerticalSocialIconsProps> = ({contact}) => {
 				<div className="flex gap-4 mt-8 justify-center">
 					{contact.social.linkedin && (
 						<a
-							href={contact.social.linkedin}
-							aria-label="LinkedIn"
-							className="p-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 hover:scale-110 transition"
-						>
+						target="_blank"
+					href={contact.social.linkedin}
+					aria-label="LinkedIn"
+					className="p-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 hover:scale-110 transition"
+					>
 							<Linkedin size={20} />
 						</a>
 					)}
 					{contact.social.github && (
 						<a
-							href={contact.social.github}
-							aria-label="GitHub"
+						target="_blank"
+						href={contact.social.github}
+						aria-label="GitHub"
 							className="p-3 bg-gray-800 text-white rounded-full hover:bg-gray-900 hover:scale-110 transition"
 						>
 							<Github size={20} />
@@ -30,6 +32,7 @@ const VerticalSocialIcons: React.FC<VerticalSocialIconsProps> = ({contact}) => {
 					)}
 					{contact.social.x && (
 						<a
+						target="_blank"
 							href={contact.social.x}
 							aria-label="Twitter"
 							className="p-3 bg-gray-800 text-white rounded-full hover:bg-gray-900 hover:scale-110 transition"
@@ -40,6 +43,7 @@ const VerticalSocialIcons: React.FC<VerticalSocialIconsProps> = ({contact}) => {
 
 					{contact.social.instagram && (
 						<a
+							target="_blank"
 							href={contact.social.instagram}
 							aria-label="Instagram"
 							className="bg-gradient-to-tr from-blue-500 to-purple-600 hover:scale-110 transition-all p-3 rounded-full shadow-lg text-white hover:bg-blue-600 "

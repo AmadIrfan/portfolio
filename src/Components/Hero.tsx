@@ -91,8 +91,6 @@ const Hero: React.FC<HeroProps> = ({
 					>
 						{profile.name}
 					</motion.h1>
-
-					{/* Typewriter Designation */}
 					<motion.p
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}

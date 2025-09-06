@@ -7,9 +7,10 @@ import Main from "./Components/Main";
 import portfolioData from "./data/portfolioData";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AdminDashboard from "./Components/AdminDashboard";
+import AdminDashboard from "./Components/admin/AdminDashboard";
 import PrivateRoute from "./Components/PrivateRoute";
 import Login from "./Components/Login";
+import AdminProfile from "./Components/admin/sections/AdminProfile";
 
 const App = () => {
 	const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);
@@ -58,7 +59,15 @@ const App = () => {
 					path="/portfolio/admin"
 					element={
 						<PrivateRoute>
-							<AdminDashboard portfolio={ finalPortfolio} />
+							<AdminDashboard portfolio={finalPortfolio} />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/portfolio/profile"
+					element={
+						<PrivateRoute>
+							<AdminProfile portfolio={finalPortfolio} />
 						</PrivateRoute>
 					}
 				/>

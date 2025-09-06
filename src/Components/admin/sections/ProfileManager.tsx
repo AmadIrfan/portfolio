@@ -18,7 +18,7 @@ const ProfileManager: React.FC<{ profile: Profile }> = ({ profile }) => {
 	};
 
 	return (
-		<div className="bg-white p-6 rounded shadow">
+		<div className="p-2 rounded shadow">
 			<h2 className="text-xl font-semibold mb-4">Edit Profile</h2>
 			<div className=" md:flex space-y-4 mb-4 block md:flex-row ">
 				<div className="m-2 w-full">
