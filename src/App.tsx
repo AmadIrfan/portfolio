@@ -46,7 +46,7 @@ const App = () => {
 		<Router>
 			<Routes>
 				<Route
-					path="/portfolio"
+					path="/"
 					element={
 						<Main
 							portfolioData={finalPortfolio}
@@ -54,9 +54,9 @@ const App = () => {
 						/>
 					}
 				/>
-				<Route path="/portfolio/login" element={<Login />} />
+				<Route path="/login" element={<Login />} />
 				<Route
-					path="/portfolio/admin"
+					path="/admin"
 					element={
 						<PrivateRoute>
 							<AdminDashboard portfolio={finalPortfolio} />
@@ -64,7 +64,7 @@ const App = () => {
 					}
 				/>
 				<Route
-					path="/portfolio/profile"
+					path="/profile"
 					element={
 						<PrivateRoute>
 							<AdminProfile portfolio={finalPortfolio} />
