@@ -7,12 +7,12 @@ type AdminDashboardProps = {
 };
 
 const AdminDashboard: React.FC<AdminDashboardProps> = ({ portfolio }) => {
-	const p = portfolio;
-	console.log(p);
+	// const p = portfolio;
+	// console.log(p);
 
 	return (
 		<Layout>
-			<h1>Dashboard</h1>
+			<h1>{portfolio?.profile.name}</h1>
 		</Layout>
 	);
 };

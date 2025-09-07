@@ -25,7 +25,7 @@ const SkillsManager: React.FC<{ skill: Skill[] }> = ({ skill }) => {
 	const handleAddSkill = () => {
 		if (!newSkill.name) return;
 		// Add newSkill to your Firebase, DB, or state
-		console.log("New Skill:", newSkill);
+		// console.log("New Skill:", newSkill);
 		// Reset the form
 		setNewSkill({
 			logo: "",
@@ -44,7 +44,7 @@ const SkillsManager: React.FC<{ skill: Skill[] }> = ({ skill }) => {
 			setEditingIndex(null);
 			setSelectedSkill(null);
 			SetLoading(true);
-			console.log(selectedSkill);
+			// console.log(selectedSkill);
 			SetLoading(false);
 		}
 	};

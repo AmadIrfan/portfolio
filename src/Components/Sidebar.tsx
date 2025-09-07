@@ -88,7 +88,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
 										</li>
 										<li>
 											<a
-												href="/portfolio/profile"
+												href="/profile"
 												className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
 												role="menuitem"
 											>
@@ -130,7 +130,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
 					<ul className="space-y-2 font-medium">
 						<li>
 							<Link
-								to="/portfolio/admin"
+								to="/admin"
 								className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
 							>
 								<svg
@@ -148,7 +148,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
 						</li>
 						<li>
 							<Link
-								to="/portfolio/profile"
+								to="/profile"
 								className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
 							>
 								<svg

@@ -12,10 +12,10 @@ const Login = () => {
 	const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
-			console.log(email, password);
+			// console.log(email, password);
 
 			await signInWithEmailAndPassword(auth, email, password);
-			navigate("/portfolio/admin");
+			navigate("/admin");
 		} catch (err) {
 			setError(err instanceof Error ? err.message : "Login failed");
 		}
